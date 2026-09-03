@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: ase-aptitude
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_NAME
+        value: Dir. Sajid Raja
+      - key: ADMIN_EMAIL
+        value: admin@aseaptitude.com
+      - key: ADMIN_PASSWORD
+        value: ase@admin2026
+      # Add your MongoDB Atlas connection string in Render Dashboard:
+      # - key: MONGODB_URI
+      #   value: mongodb+srv://...

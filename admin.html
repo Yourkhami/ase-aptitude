@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin &amp; Teacher Portal | ASE APTITUDE</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="images/logo.jpeg" onerror="this.onerror=null; this.href='images/logo.png';">
+
+  <!-- Google Fonts: Poppins & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ================================================================
+       AUTHENTICATION GATE (Login Modal - Hidden after login)
+       ================================================================ -->
+  <div class="auth-gate-overlay" id="authGate">
+    <div class="auth-card">
+      <div class="auth-header text-center">
+        <div class="auth-logo-wrapper">
+          <img src="images/logo.jpeg" alt="ASE Aptitude Logo" class="auth-logo" onerror="this.onerror=null; this.src='images/logo.png';">
+        </div>
+        <h2 class="auth-title">Teacher &amp; Staff Portal</h2>
+        <p class="auth-subtitle">ASE Aptitude &ndash; Spoken English &amp; Computer Institute</p>
+      </div>
+
+      <div class="auth-alert" id="authAlert" style="display: none;"></div>
+
+      <form id="adminLoginForm" class="auth-form" novalidate>
+        <div class="form-group">
+          <label for="adminUsername" class="form-label">Admin Username</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-user-shield input-icon"></i>
+            <input type="text" id="adminUsername" class="form-input" placeholder="Enter username" required autocomplete="username">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="adminPassword" class="form-label">Password</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" id="adminPassword" class="form-input" placeholder="Enter password" required autocomplete="current-password">
+            <button type="button" class="btn-toggle-pw" id="togglePwBtn" aria-label="Toggle password visibility">
+              <i class="fa-solid fa-eye" id="togglePwIcon"></i>
+            </button>
+          </div>
+          <span class="auth-hint">Default: <code>admin</code> / <code>ase@admin2026</code></span>
+        </div>
+
+        <button type="submit" class="btn btn-auth-submit" id="loginSubmitBtn">
+          <span>Secure Sign In</span>
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        </button>
+
+        <div class="auth-footer text-center">
+          <a href="index.html" class="auth-back-link"><i class="fa-solid fa-arrow-left"></i> Return to Main Website</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       MAIN ADMIN PORTAL (Revealed after successful login)
+       ================================================================ -->
+  <div class="admin-layout" id="adminLayout" style="display: none;">
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <img src="images/logo.jpeg" alt="Logo" class="sidebar-logo" onerror="this.onerror=null; this.src='images/logo.png';">
+          <div class="brand-text">
+            <strong>ASE APTITUDE</strong>
+            <span>Admin Dashboard</span>
+          </div>
+        </a>
+        <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close sidebar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="admin-profile-badge">
+        <div class="profile-avatar">
+          <i class="fa-solid fa-chalkboard-user"></i>
+        </div>
+        <div class="profile-info">
+          <strong id="displayAdminName">Faculty Admin</strong>
+          <span>Dir. Sajid Raja &amp; Team</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <button class="nav-tab-btn active" data-tab="tab-overview">
+              <i class="fa-solid fa-gauge-high"></i>
+              <span>Overview</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-tab-btn" data-tab="tab-courses">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span>Course Manager</span>
+              <span class="badge-count" id="countCourses">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-tab-btn" data-tab="tab-batches">
+              <i class="fa-solid fa-calendar-days"></i>
+              <span>Batch Timetable</span>
+              <span class="badge-count" id="countBatches">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-tab-btn" data-tab="tab-fees">
+              <i class="fa-solid fa-indian-rupee-sign"></i>
+              <span>Fee Structure</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-tab-btn" data-tab="tab-notices">
+              <i class="fa-solid fa-bullhorn"></i>
+              <span>Announcements</span>
+              <span class="badge-count" id="countNotices">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-tab-btn" data-tab="tab-inquiries">
+              <i class="fa-solid fa-user-graduate"></i>
+              <span>Student Inquiries</span>
+              <span class="badge-count alert" id="countInquiries">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-tab-btn" data-tab="tab-settings">
+              <i class="fa-solid fa-sliders"></i>
+              <span>Admin Settings</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" target="_blank" class="sidebar-link-ext" title="Open live student website">
+          <i class="fa-solid fa-globe"></i>
+          <span>View Live Site</span>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+        <button class="sidebar-logout-btn" id="logoutBtn" title="Logout from Admin Panel">
+          <i class="fa-solid fa-power-off"></i>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Admin Main Content Area -->
+    <main class="admin-main">
+      
+      <!-- Top Bar -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="admin-hamburger-btn" id="adminHamburgerBtn" aria-label="Toggle navigation drawer">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="topbar-heading">
+            <h1 class="page-title" id="pageTitle">Portal Overview</h1>
+            <span class="topbar-sub">Manage academic schedules, syllabus, fees, and student admissions</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <span class="live-pill"><i class="fa-solid fa-circle pulse-green"></i> Live Sync Enabled</span>
+          <a href="index.html" class="btn btn-outline-light btn-sm" target="_blank">
+            <i class="fa-solid fa-desktop"></i> Student Website
+          </a>
+        </div>
+      </header>
+
+      <!-- Toast Notification Container -->
+      <div class="toast-container" id="toastContainer"></div>
+
+      <!-- Tab Contents -->
+      <div class="admin-content-body">
+
+        <!-- ============================================================
+             TAB 1: OVERVIEW DASHBOARD
+             ============================================================ -->
+        <section class="tab-panel active" id="tab-overview">
+          <!-- Metrics Cards -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-icon-box blue">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div class="metric-data">
+                <span class="metric-num" id="statTotalCourses">3</span>
+                <span class="metric-title">Active Courses</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box orange">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
+              <div class="metric-data">
+                <span class="metric-num" id="statTotalBatches">5</span>
+                <span class="metric-title">Daily Batches</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box green">
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <div class="metric-data">
+                <span class="metric-num" id="statTotalLeads">0</span>
+                <span class="metric-title">Demo Inquiries</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box gold">
+                <i class="fa-solid fa-bullhorn"></i>
+              </div>
+              <div class="metric-data">
+                <span class="metric-num" id="statActiveNotices">1</span>
+                <span class="metric-title">Live Announcements</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="quick-actions-bar">
+            <h3>Quick Admin Actions:</h3>
+            <div class="action-buttons-wrap">
+              <button class="btn btn-primary btn-sm" id="quickAddCourseBtn">
+                <i class="fa-solid fa-plus"></i> Add New Course
+              </button>
+              <button class="btn btn-outline-teal btn-sm" id="quickAddBatchBtn">
+                <i class="fa-solid fa-calendar-plus"></i> Add Class Batch
+              </button>
+              <button class="btn btn-outline-orange btn-sm" id="quickAddNoticeBtn">
+                <i class="fa-solid fa-bullhorn"></i> Post Notice
+              </button>
+            </div>
+          </div>
+
+          <!-- Two Column Summary -->
+          <div class="overview-summary-grid">
+            <!-- Recent Inquiries -->
+            <div class="panel-card">
+              <div class="panel-card-header">
+                <h3><i class="fa-solid fa-clock-rotate-left"></i> Recent Student Demo Bookings</h3>
+                <button class="btn-link-action" data-target-tab="tab-inquiries">View All &rarr;</button>
+              </div>
+              <div class="panel-card-body" id="overviewRecentInquiries">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <!-- Active Timetable Snapshot -->
+            <div class="panel-card">
+              <div class="panel-card-header">
+                <h3><i class="fa-solid fa-calendar-days"></i> Current Timetable Snapshot</h3>
+                <button class="btn-link-action" data-target-tab="tab-batches">Manage Schedule &rarr;</button>
+              </div>
+              <div class="panel-card-body" id="overviewBatchesSnapshot">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB 2: COURSE MANAGER
+             ============================================================ -->
+        <section class="tab-panel" id="tab-courses">
+          <div class="panel-header-row">
+            <div>
+              <h2 class="panel-title">Course Management</h2>
+              <p class="panel-desc">Add, update, or remove courses. Changes instantly update the "Our Courses" section on the website.</p>
+            </div>
+            <button class="btn btn-primary" id="openAddCourseModal">
+              <i class="fa-solid fa-plus"></i> Add New Course
+            </button>
+          </div>
+
+          <div class="courses-admin-grid" id="coursesAdminList">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB 3: BATCH TIMETABLE & CLASS SCHEDULE
+             ============================================================ -->
+        <section class="tab-panel" id="tab-batches">
+          <div class="panel-header-row">
+            <div>
+              <h2 class="panel-title">Class Timetable &amp; Batches</h2>
+              <p class="panel-desc">Manage class hours, morning/evening shifts, faculty assignments, and seat availability.</p>
+            </div>
+            <button class="btn btn-teal" id="openAddBatchModal">
+              <i class="fa-solid fa-calendar-plus"></i> Add New Batch
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table" id="batchesTable">
+              <thead>
+                <tr>
+                  <th>Batch / Program</th>
+                  <th>Timings</th>
+                  <th>Days</th>
+                  <th>Assigned Faculty</th>
+                  <th>Lab / Mode</th>
+                  <th>Seats Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="batchesTableBody">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB 4: FEE STRUCTURE
+             ============================================================ -->
+        <section class="tab-panel" id="tab-fees">
+          <div class="panel-header-row">
+            <div>
+              <h2 class="panel-title">Course Fee &amp; Installment Structure</h2>
+              <p class="panel-desc">Set transparent, affordable fees, installment breakdown, and scholarship discounts.</p>
+            </div>
+            <button class="btn btn-gold" id="openAddFeeModal">
+              <i class="fa-solid fa-circle-plus"></i> Add Fee Plan
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table" id="feesTable">
+              <thead>
+                <tr>
+                  <th>Course Name</th>
+                  <th>Duration</th>
+                  <th>Standard Fee</th>
+                  <th>Installment Option</th>
+                  <th>Special Discount / Offer</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="feesTableBody">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB 5: ANNOUNCEMENTS & NOTICES
+             ============================================================ -->
+        <section class="tab-panel" id="tab-notices">
+          <div class="panel-header-row">
+            <div>
+              <h2 class="panel-title">Announcements &amp; Notice Board</h2>
+              <p class="panel-desc">Post new batch notices, holiday schedules, and event announcements directly to the website announcement bar.</p>
+            </div>
+            <button class="btn btn-orange" id="openAddNoticeModal">
+              <i class="fa-solid fa-bullhorn"></i> Post New Announcement
+            </button>
+          </div>
+
+          <div class="notices-list" id="noticesList">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB 6: STUDENT DEMO INQUIRIES
+             ============================================================ -->
+        <section class="tab-panel" id="tab-inquiries">
+          <div class="panel-header-row">
+            <div>
+              <h2 class="panel-title">Student Inquiries &amp; Demo Registrations</h2>
+              <p class="panel-desc">Incoming registrations submitted through the "Apply for Free Demo Class" website form.</p>
+            </div>
+            <div class="inquiry-actions-row">
+              <button class="btn btn-outline-light btn-sm" id="exportLeadsBtn">
+                <i class="fa-solid fa-file-export"></i> Export CSV
+              </button>
+              <button class="btn btn-outline-danger btn-sm" id="clearLeadsBtn">
+                <i class="fa-solid fa-trash"></i> Clear All
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table" id="inquiriesTable">
+              <thead>
+                <tr>
+                  <th>Date / Time</th>
+                  <th>Student Name</th>
+                  <th>Phone Number</th>
+                  <th>Course Selected</th>
+                  <th>Batch Preferred</th>
+                  <th>Notes</th>
+                  <th>Direct Contact</th>
+                </tr>
+              </thead>
+              <tbody id="inquiriesTableBody">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             TAB 7: ADMIN SETTINGS & SECURITY
+             ============================================================ -->
+        <section class="tab-panel" id="tab-settings">
+          <div class="settings-grid">
+
+            <!-- Security Credentials Form -->
+            <div class="panel-card">
+              <div class="panel-card-header">
+                <h3><i class="fa-solid fa-shield-halved"></i> Change Admin Password</h3>
+              </div>
+              <div class="panel-card-body">
+                <form id="changePasswordForm">
+                  <div class="form-group">
+                    <label for="newAdminUsername" class="form-label">Admin Username</label>
+                    <input type="text" id="newAdminUsername" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="newAdminPassword" class="form-label">New Password</label>
+                    <input type="password" id="newAdminPassword" class="form-control" placeholder="Minimum 6 characters" required minlength="6">
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmAdminPassword" class="form-label">Confirm New Password</label>
+                    <input type="password" id="confirmAdminPassword" class="form-control" placeholder="Repeat new password" required minlength="6">
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-key"></i> Update Credentials
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Data Reset & Backup -->
+            <div class="panel-card">
+              <div class="panel-card-header">
+                <h3><i class="fa-solid fa-database"></i> Backup &amp; Reset System</h3>
+              </div>
+              <div class="panel-card-body">
+                <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.5rem;">
+                  All custom courses, batch timetables, fees, announcements, and student registrations are preserved in your browser's persistent storage.
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                  <button class="btn btn-outline-light" id="backupDataBtn">
+                    <i class="fa-solid fa-download"></i> Backup All Portal Data (JSON)
+                  </button>
+                  <button class="btn btn-outline-danger" id="resetDefaultsBtn">
+                    <i class="fa-solid fa-rotate-left"></i> Reset to Default Institute Data
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ================================================================
+       MODAL: ADD / EDIT COURSE
+       ================================================================ -->
+  <div class="admin-modal" id="courseModal" aria-hidden="true">
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <h3 id="courseModalTitle">Add New Course</h3>
+        <button class="modal-x-btn" data-close-modal="courseModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="courseForm">
+        <input type="hidden" id="courseEditId">
+        <div class="admin-modal-body">
+          <div class="form-group">
+            <label for="courseNameInput" class="form-label">Course Title <span class="required">*</span></label>
+            <input type="text" id="courseNameInput" class="form-control" placeholder="e.g. Spoken English &amp; Personality Dev." required>
+          </div>
+          <div class="form-group-row">
+            <div class="form-group">
+              <label for="courseThemeInput" class="form-label">Color Theme</label>
+              <select id="courseThemeInput" class="form-control">
+                <option value="theme-blue">Royal Blue</option>
+                <option value="theme-orange">Orange</option>
+                <option value="theme-teal">Teal / Green</option>
+                <option value="theme-purple">Purple</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="courseBadgeInput" class="form-label">Badge Tag</label>
+              <input type="text" id="courseBadgeInput" class="form-control" placeholder="e.g. High Demand, Popular">
+            </div>
+          </div>
+          <div class="form-group-row">
+            <div class="form-group">
+              <label for="courseDurationInput" class="form-label">Duration</label>
+              <input type="text" id="courseDurationInput" class="form-control" placeholder="e.g. 3 to 6 Months">
+            </div>
+            <div class="form-group">
+              <label for="courseFeeInput" class="form-label">Fee (₹)</label>
+              <input type="text" id="courseFeeInput" class="form-control" placeholder="e.g. ₹3,500 / ₹6,000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="courseDescInput" class="form-label">Short Description</label>
+            <textarea id="courseDescInput" class="form-control" rows="2" placeholder="Brief summary of the course outcomes..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="courseTopicsInput" class="form-label">Syllabus Topics (Comma separated)</label>
+            <textarea id="courseTopicsInput" class="form-control" rows="3" placeholder="Grammar, Daily Speaking Practice, Interview Skills, Group Discussions..." required></textarea>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-outline-light" data-close-modal="courseModal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveCourseSubmitBtn">Save Course</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       MODAL: ADD / EDIT BATCH TIMETABLE
+       ================================================================ -->
+  <div class="admin-modal" id="batchModal" aria-hidden="true">
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <h3 id="batchModalTitle">Add Class Batch Schedule</h3>
+        <button class="modal-x-btn" data-close-modal="batchModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="batchForm">
+        <input type="hidden" id="batchEditId">
+        <div class="admin-modal-body">
+          <div class="form-group">
+            <label for="batchCourseSelect" class="form-label">Course / Subject <span class="required">*</span></label>
+            <select id="batchCourseSelect" class="form-control" required>
+              <!-- Populated via JS -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="batchNameInput" class="form-label">Batch Name / Shift <span class="required">*</span></label>
+            <input type="text" id="batchNameInput" class="form-control" placeholder="e.g. Morning Fluency Batch, ADCA Fast-Track" required>
+          </div>
+          <div class="form-group-row">
+            <div class="form-group">
+              <label for="batchTimeInput" class="form-label">Class Timings <span class="required">*</span></label>
+              <input type="text" id="batchTimeInput" class="form-control" placeholder="e.g. 8:00 AM - 9:30 AM" required>
+            </div>
+            <div class="form-group">
+              <label for="batchDaysInput" class="form-label">Days</label>
+              <input type="text" id="batchDaysInput" class="form-control" placeholder="e.g. Mon - Sat, Alternate Days" value="Mon - Sat">
+            </div>
+          </div>
+          <div class="form-group-row">
+            <div class="form-group">
+              <label for="batchFacultyInput" class="form-label">Assigned Faculty</label>
+              <input type="text" id="batchFacultyInput" class="form-control" placeholder="e.g. Dir. Sajid Raja, Senior Faculty">
+            </div>
+            <div class="form-group">
+              <label for="batchSeatsInput" class="form-label">Seat Status</label>
+              <select id="batchSeatsInput" class="form-control">
+                <option value="Admission Open">Admission Open</option>
+                <option value="Few Seats Left">Few Seats Left</option>
+                <option value="Batch Starting Soon">Batch Starting Soon</option>
+                <option value="Batch Full">Batch Full</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="batchLabInput" class="form-label">Lab / Room</label>
+            <input type="text" id="batchLabInput" class="form-control" placeholder="e.g. Main Lab Room 1, Speech Hall">
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-outline-light" data-close-modal="batchModal">Cancel</button>
+          <button type="submit" class="btn btn-teal">Save Batch Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       MODAL: ADD / EDIT FEE PLAN
+       ================================================================ -->
+  <div class="admin-modal" id="feeModal" aria-hidden="true">
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <h3 id="feeModalTitle">Set Course Fee Structure</h3>
+        <button class="modal-x-btn" data-close-modal="feeModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="feeForm">
+        <input type="hidden" id="feeEditId">
+        <div class="admin-modal-body">
+          <div class="form-group">
+            <label for="feeCourseNameInput" class="form-label">Course Name <span class="required">*</span></label>
+            <input type="text" id="feeCourseNameInput" class="form-control" placeholder="e.g. DCA (Diploma in Computer Applications)" required>
+          </div>
+          <div class="form-group-row">
+            <div class="form-group">
+              <label for="feeDurationInput" class="form-label">Course Duration</label>
+              <input type="text" id="feeDurationInput" class="form-control" placeholder="e.g. 6 Months">
+            </div>
+            <div class="form-group">
+              <label for="feeStandardAmountInput" class="form-label">Standard Fee (₹) <span class="required">*</span></label>
+              <input type="text" id="feeStandardAmountInput" class="form-control" placeholder="e.g. ₹4,500" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="feeInstallmentInput" class="form-label">Installment Plan</label>
+            <input type="text" id="feeInstallmentInput" class="form-control" placeholder="e.g. ₹2,000 at admission + ₹1,250/month (2 months)">
+          </div>
+          <div class="form-group">
+            <label for="feeDiscountInput" class="form-label">Special Offer / Scholarship Note</label>
+            <input type="text" id="feeDiscountInput" class="form-control" placeholder="e.g. 10% discount for one-time payment">
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-outline-light" data-close-modal="feeModal">Cancel</button>
+          <button type="submit" class="btn btn-gold">Save Fee Plan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       MODAL: ADD / EDIT ANNOUNCEMENT
+       ================================================================ -->
+  <div class="admin-modal" id="noticeModal" aria-hidden="true">
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <h3 id="noticeModalTitle">Post New Announcement</h3>
+        <button class="modal-x-btn" data-close-modal="noticeModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="noticeForm">
+        <input type="hidden" id="noticeEditId">
+        <div class="admin-modal-body">
+          <div class="form-group">
+            <label for="noticeBadgeInput" class="form-label">Badge Tag</label>
+            <input type="text" id="noticeBadgeInput" class="form-control" placeholder="e.g. New Batch, Holiday Alert, Special Workshop" value="New Batches Starting This Week!">
+          </div>
+          <div class="form-group">
+            <label for="noticeTextInput" class="form-label">Announcement Content <span class="required">*</span></label>
+            <textarea id="noticeTextInput" class="form-control" rows="3" placeholder="e.g. ISO Certified Training • 100% Practical Lab Sessions • Small Batches" required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-checkbox-label">
+              <input type="checkbox" id="noticeLiveCheckbox" checked>
+              <span>Sync and display on website top announcement bar immediately</span>
+            </label>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-outline-light" data-close-modal="noticeModal">Cancel</button>
+          <button type="submit" class="btn btn-orange">Publish Announcement</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin JavaScript -->
+  <script src="admin.js"></script>
+</body>
+</html>

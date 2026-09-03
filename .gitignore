@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# Environment Variables
+.env
+backend/.env
+
+# Uploads (optional: ignore temporary user uploads if desired, or keep default)
+# backend/uploads/*
+# !backend/uploads/.gitkeep
+
+# System & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+npm-debug.log*
