@@ -1,8 +1,17 @@
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
+  const uri = process.env.MONGODB_URI;
+
+  if (!uri) {
+    console.warn('No MONGODB_URI provided in environment variables.');
+    console.log('Running with built-in zero-downtime memory store.');
+    console.log('Tip: For permanent cloud storage, add MONGODB_URI in Render Environment Variables.');
+    return null;
+  }
+
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ase_aptitude', {
+    const conn = await mongoose.connect(uri, {
       serverSelectionTimeoutMS: 5000,
       autoIndex: true
     });
@@ -20,11 +29,8 @@ const connectDB = async () => {
     return conn;
   } catch (error) {
     console.error(`MongoDB Connection Error: ${error.message}`);
-    console.warn('Tip: Ensure MongoDB is running locally or set MONGODB_URI in backend/.env to your MongoDB Atlas connection string.');
-    // In dev mode, do not hard exit so server can still serve static files and provide meaningful diagnostics
-    if (process.env.NODE_ENV === 'production') {
-      process.exit(1);
-    }
+    console.warn('Running with built-in memory store so the website and admin panel stay online without downtime.');
+    return null;
   }
 };
 
