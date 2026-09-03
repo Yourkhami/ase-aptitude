@@ -3391,3 +3391,30 @@ textarea.form-control {
     height: 340px;
   }
 }
+
+
+/* Guarantee Submit Button Visibility */
+.btn-submit-demo {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  background: var(--orange-gradient) !important;
+  color: #ffffff !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  padding: 1rem 1.5rem !important;
+  border-radius: var(--border-radius-md) !important;
+  box-shadow: 0 4px 18px rgba(255, 107, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.6rem !important;
+  cursor: pointer !important;
+  margin-top: 1rem !important;
+}
+
+.btn-submit-demo:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(255, 107, 0, 0.55) !important;
+}

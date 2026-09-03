@@ -1288,3 +1288,147 @@ button {
     padding: 1.25rem;
   }
 }
+
+
+/* ================================================================
+   COMPREHENSIVE BUTTON STYLING SYSTEM (.btn, .btn-primary, etc.)
+   ================================================================ */
+.btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1.4rem;
+  font-size: 0.94rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  text-decoration: none;
+  line-height: 1.2;
+  box-sizing: border-box;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(56, 189, 248, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(29, 78, 216, 0.45) !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%) !important;
+  box-shadow: 0 6px 22px rgba(37, 99, 235, 0.65) !important;
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.btn-teal {
+  background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(45, 212, 191, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(13, 148, 136, 0.45) !important;
+}
+
+.btn-teal:hover {
+  background: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%) !important;
+  box-shadow: 0 6px 22px rgba(20, 184, 166, 0.65) !important;
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.btn-orange {
+  background: linear-gradient(135deg, #ea580c 0%, #ff6b00 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 133, 51, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.45) !important;
+}
+
+.btn-orange:hover {
+  background: linear-gradient(135deg, #ff6b00 0%, #fb923c 100%) !important;
+  box-shadow: 0 6px 22px rgba(255, 107, 0, 0.65) !important;
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.btn-outline-light {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  color: #ffffff !important;
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-1px);
+  color: #ffffff !important;
+}
+
+.btn-sm {
+  padding: 0.45rem 0.85rem !important;
+  font-size: 0.82rem !important;
+}
+
+.btn-danger {
+  background: rgba(239, 68, 68, 0.18) !important;
+  border: 1px solid rgba(239, 68, 68, 0.45) !important;
+  color: #f87171 !important;
+}
+
+.btn-danger:hover {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+/* ================================================================
+   FIXED MODAL LAYOUT WITH STICKY ALWAYS-VISIBLE FOOTER & BUTTONS
+   ================================================================ */
+.admin-modal-dialog {
+  background: var(--navy-900);
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  border-radius: var(--radius-lg);
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  transform: scale(0.95);
+  transition: transform var(--transition);
+  overflow: hidden !important;
+}
+
+.admin-modal-dialog form {
+  display: flex !important;
+  flex-direction: column !important;
+  max-height: calc(90vh - 65px) !important;
+  min-height: 0 !important;
+  flex: 1 1 auto !important;
+  overflow: hidden !important;
+}
+
+.admin-modal-body {
+  padding: 1.5rem 1.8rem !important;
+  overflow-y: auto !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+}
+
+.admin-modal-footer {
+  padding: 1.1rem 1.8rem !important;
+  background: #081024 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 1rem !important;
+  flex-shrink: 0 !important;
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 100 !important;
+}
