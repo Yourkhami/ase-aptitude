@@ -44,6 +44,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Static asset folders
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/admin', express.static(path.join(__dirname, '..', 'admin')));
+app.get('/admin.html', (req, res) => res.redirect('/admin'));
 app.use('/images', express.static(path.join(__dirname, '..', 'images')));
 app.use(express.static(path.join(__dirname, '..')));
 
