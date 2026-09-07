@@ -91,6 +91,8 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -3417,4 +3419,721 @@ textarea.form-control {
 .btn-submit-demo:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 24px rgba(255, 107, 0, 0.55) !important;
+}
+
+
+/* ================================================================
+   MOBILE-FIRST HIGH-END RESPONSIVE STYLES (Tablets & Phones)
+   ================================================================ */
+
+/* Global Mobile Fixes (All screens <= 768px) */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative;
+  }
+
+  .container {
+    padding-left: 1.15rem !important;
+    padding-right: 1.15rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .section {
+    padding: 3.5rem 0 !important;
+  }
+
+  .section-header {
+    margin-bottom: 2rem !important;
+  }
+
+  .section-title {
+    font-size: 1.85rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem !important;
+  }
+
+  /* --- 1. HEADER & NAVBAR --- */
+  .site-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+  }
+
+  .top-announcement-bar {
+    display: none !important;
+  }
+
+  .navbar {
+    padding: 0.5rem 0 !important;
+  }
+
+  .nav-container {
+    gap: 0.5rem !important;
+  }
+
+  .logo-wrapper {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .brand-title {
+    font-size: 1.15rem !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  .brand-subtitle {
+    font-size: 0.68rem !important;
+    margin-top: 1px !important;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-right .nav-chat-btn {
+    display: none !important; /* WhatsApp is in mobile drawer and floating button */
+  }
+
+  .hamburger-btn {
+    display: flex !important;
+    width: 36px !important;
+    height: 24px !important;
+    justify-content: space-between;
+  }
+
+  .nav-menu-wrapper {
+    position: fixed !important;
+    top: 58px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100vh - 58px) !important;
+    background: linear-gradient(180deg, rgba(6, 15, 38, 0.98) 0%, rgba(4, 9, 24, 0.99) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding: 2rem 1.5rem !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    overflow-y: auto !important;
+    z-index: 9999 !important;
+  }
+
+  .nav-menu-wrapper.is-open {
+    transform: translateX(0) !important;
+  }
+
+  .nav-links {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 0 !important;
+  }
+
+  .nav-link {
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    width: 100% !important;
+    padding: 0.85rem 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .mobile-nav-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.85rem !important;
+    width: 100% !important;
+    margin-top: 2rem !important;
+    padding-top: 1.25rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  }
+
+  .mobile-nav-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.85rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* --- 2. HERO SECTION --- */
+  .hero-section {
+    min-height: auto !important;
+    padding: 3.5rem 0 3rem !important;
+  }
+
+  .hero-badge {
+    font-size: 0.78rem !important;
+    padding: 0.35rem 0.85rem !important;
+    margin-bottom: 1.1rem !important;
+    max-width: 100% !important;
+  }
+
+  .hero-heading {
+    font-size: clamp(1.85rem, 6.5vw, 2.4rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1.1rem !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .hero-subheading {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.8rem !important;
+  }
+
+  .hero-cta-wrapper {
+    margin-bottom: 2rem !important;
+  }
+
+  .hero-cta-wrapper .btn-primary-cta {
+    width: 100% !important;
+    padding: 0.95rem 1.2rem !important;
+    font-size: 1.02rem !important;
+    justify-content: center !important;
+    min-height: 48px !important;
+  }
+
+  .hero-trust-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+  }
+
+  .trust-item {
+    padding: 0.75rem 0.9rem !important;
+    gap: 0.75rem !important;
+  }
+
+  .trust-icon {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .trust-text strong {
+    font-size: 0.88rem !important;
+  }
+
+  .trust-text span {
+    font-size: 0.72rem !important;
+  }
+
+  .hero-scroll-indicator {
+    display: none !important;
+  }
+
+  /* --- 3. COURSES SECTION --- */
+  .courses-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .course-card {
+    padding: 1.6rem 1.25rem !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .course-title {
+    font-size: 1.35rem !important;
+  }
+
+  .course-desc {
+    font-size: 0.9rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .course-curriculum {
+    padding: 0.9rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .course-list li {
+    font-size: 0.86rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .btn-course-learn {
+    min-height: 44px !important;
+    width: 100% !important;
+    padding: 0.75rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  /* --- 4. PROMOTIONS BANNER --- */
+  .promo-banner-section {
+    padding: 2.5rem 0 !important;
+  }
+
+  .promo-banner-card {
+    padding: 2rem 1.25rem !important;
+    border-radius: 1.25rem !important;
+  }
+
+  .promo-badge-tag {
+    font-size: 0.76rem !important;
+    padding: 0.3rem 0.8rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .promo-heading {
+    font-size: 1.85rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.6rem !important;
+  }
+
+  .promo-subheading {
+    font-size: 1.15rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .promo-tagline {
+    font-size: 0.92rem !important;
+    margin-bottom: 1.4rem !important;
+  }
+
+  .promo-features-row {
+    gap: 0.6rem !important;
+    margin-bottom: 1.6rem !important;
+  }
+
+  .promo-pill {
+    font-size: 0.8rem !important;
+    padding: 0.4rem 0.75rem !important;
+  }
+
+  .promo-cta-area .btn {
+    width: 100% !important;
+    min-height: 48px !important;
+  }
+
+  /* --- 5. WHY CHOOSE US & MISSION --- */
+  .why-us-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .why-card {
+    padding: 1.6rem 1.25rem !important;
+  }
+
+  .why-title {
+    font-size: 1.25rem !important;
+  }
+
+  .mission-card {
+    padding: 2.2rem 1.25rem !important;
+    border-radius: 1.25rem !important;
+  }
+
+  .mission-icon-circle {
+    width: 52px !important;
+    height: 52px !important;
+    font-size: 1.4rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .mission-heading {
+    font-size: 1.65rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .mission-quote {
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  /* --- 6. EVENTS & ACTIVITIES CAROUSEL --- */
+  .gallery-section {
+    padding: 3.5rem 0 !important;
+  }
+
+  .gallery-slider-wrapper {
+    padding: 0 !important;
+  }
+
+  .gallery-carousel {
+    border-radius: 1rem !important;
+  }
+
+  .gallery-slide {
+    height: 400px !important;
+  }
+
+  .gallery-slide-overlay {
+    padding: 1.5rem 1.25rem !important;
+    background: linear-gradient(to top, rgba(6, 11, 24, 0.96) 0%, rgba(6, 11, 24, 0.65) 45%, rgba(6, 11, 24, 0.15) 80%, transparent 100%) !important;
+  }
+
+  .gallery-slide-badge {
+    font-size: 0.7rem !important;
+    padding: 0.25rem 0.65rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .gallery-slide-title {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .gallery-slide-desc {
+    font-size: 0.84rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  .btn-gallery-zoom {
+    padding: 0.55rem 1.1rem !important;
+    font-size: 0.82rem !important;
+    min-height: 38px !important;
+  }
+
+  .gallery-arrow-btn {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 0.95rem !important;
+    z-index: 10 !important;
+  }
+
+  .gallery-arrow-btn.prev {
+    left: 8px !important;
+  }
+
+  .gallery-arrow-btn.next {
+    right: 8px !important;
+  }
+
+  .gallery-dots-box {
+    margin-top: 1.2rem !important;
+    gap: 0.55rem !important;
+  }
+
+  /* --- 7. REVIEWS & TESTIMONIALS --- */
+  .reviews-slider-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .review-card {
+    padding: 1.8rem 1.2rem !important;
+    border-radius: 1.25rem !important;
+  }
+
+  .review-quote-icon {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.15rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .review-rating {
+    font-size: 1.05rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .review-text {
+    font-size: 0.98rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .slider-controls {
+    display: none !important;
+  }
+
+  .slider-dots {
+    margin-top: 1.25rem !important;
+    gap: 0.55rem !important;
+  }
+
+  /* --- 8. ABOUT DIRECTOR & CAMPUS --- */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .about-building-img {
+    height: 270px !important;
+  }
+
+  .about-floating-badge {
+    bottom: 1rem !important;
+    left: 1rem !important;
+    padding: 0.6rem 0.9rem !important;
+  }
+
+  .about-highlights-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .about-highlight-item {
+    padding: 0.75rem 0.9rem !important;
+    font-size: 0.88rem !important;
+  }
+
+  .about-phone-box {
+    padding: 1.1rem !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.75rem !important;
+  }
+
+  .phone-main-number {
+    font-size: 1.25rem !important;
+  }
+
+  /* --- 9. CONTACT & DEMO CLASS FORMS --- */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+
+  .contact-channel-card {
+    padding: 1.1rem 1rem !important;
+    gap: 1rem !important;
+  }
+
+  .channel-icon-wrapper {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.15rem !important;
+  }
+
+  .social-btn-row {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+  }
+
+  .social-card {
+    padding: 0.85rem !important;
+  }
+
+  .demo-form-card {
+    padding: 1.8rem 1.2rem !important;
+    border-radius: 1.25rem !important;
+  }
+
+  .form-header {
+    margin-bottom: 1.25rem !important;
+  }
+
+  .form-title {
+    font-size: 1.45rem !important;
+  }
+
+  .form-subtitle {
+    font-size: 0.88rem !important;
+  }
+
+  .form-tabs-switch {
+    margin-bottom: 1.25rem !important;
+  }
+
+  .form-tab-btn {
+    font-size: 0.8rem !important;
+    padding: 0.6rem 0.4rem !important;
+  }
+
+  .form-control {
+    font-size: 0.92rem !important;
+    padding: 0.85rem 1rem 0.85rem 2.6rem !important;
+    min-height: 46px !important;
+  }
+
+  .btn-submit-demo {
+    min-height: 48px !important;
+    font-size: 1rem !important;
+    padding: 0.9rem 1.25rem !important;
+  }
+
+  /* --- 10. FOOTER --- */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    text-align: center !important;
+  }
+
+  .footer-col {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .footer-about-text {
+    max-width: 100% !important;
+    margin: 0 auto 1.25rem !important;
+  }
+
+  .footer-social-row {
+    justify-content: center !important;
+    margin-top: 1rem !important;
+  }
+
+  .footer-contact-list {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .footer-contact-item {
+    text-align: center !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.75rem !important;
+    padding-top: 1.5rem !important;
+  }
+
+  /* --- 11. FLOATING ACTION BUTTONS --- */
+  .floating-whatsapp-container {
+    bottom: 1rem !important;
+    right: 1rem !important;
+    z-index: 998 !important;
+  }
+
+  .floating-whatsapp-btn {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.6rem !important;
+  }
+
+  .scroll-top-btn {
+    bottom: 1rem !important;
+    left: 1rem !important;
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* --- 12. SYLLABUS & LIGHTBOX MODALS ON MOBILE --- */
+  .modal-dialog {
+    width: 95% !important;
+    max-width: 95% !important;
+    max-height: 88vh !important;
+    margin: auto !important;
+  }
+
+  .modal-header {
+    padding: 1.1rem 1.25rem !important;
+  }
+
+  .modal-title {
+    font-size: 1.25rem !important;
+  }
+
+  .modal-body {
+    padding: 1.2rem 1.25rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  .modal-footer {
+    padding: 1rem 1.25rem !important;
+    flex-direction: column !important;
+    gap: 0.6rem !important;
+  }
+
+  .modal-footer .btn {
+    width: 100% !important;
+  }
+
+  .lightbox-content {
+    width: 95% !important;
+    max-height: 88vh !important;
+  }
+
+  .lightbox-img {
+    max-height: 65vh !important;
+    width: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .lightbox-nav-btn {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 1rem !important;
+  }
+
+  .lightbox-nav-btn.prev { left: 5px !important; }
+  .lightbox-nav-btn.next { right: 5px !important; }
+
+  .lightbox-content .lightbox-close-btn {
+    top: -40px !important;
+    right: 0 !important;
+    width: 34px !important;
+    height: 34px !important;
+  }
+}
+
+/* Extra Compact Phones (Screens <= 480px, e.g. iPhone SE, Galaxy A-series) */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 0.9rem !important;
+    padding-right: 0.9rem !important;
+  }
+
+  .section-title {
+    font-size: 1.65rem !important;
+  }
+
+  .logo-wrapper {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .brand-title {
+    font-size: 1.05rem !important;
+  }
+
+  .brand-subtitle {
+    display: none !important; /* Hide long subtitle on tiny screens for ultra-clean header */
+  }
+
+  .hero-heading {
+    font-size: 1.75rem !important;
+  }
+
+  .promo-heading {
+    font-size: 1.65rem !important;
+  }
+
+  .gallery-slide {
+    height: 360px !important;
+  }
+
+  .gallery-slide-desc {
+    display: none !important; /* Keep photo unobstructed on compact phones */
+  }
+
+  .demo-form-card {
+    padding: 1.5rem 0.95rem !important;
+  }
+
+  .form-title {
+    font-size: 1.3rem !important;
+  }
+
+  .form-tab-btn {
+    font-size: 0.74rem !important;
+    padding: 0.5rem 0.3rem !important;
+  }
 }

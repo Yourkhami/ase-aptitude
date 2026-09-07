@@ -1432,3 +1432,156 @@ button {
   bottom: 0 !important;
   z-index: 100 !important;
 }
+
+
+/* ================================================================
+   MOBILE-RESPONSIVE ADMIN DASHBOARD (Tablets & Phones <= 768px)
+   ================================================================ */
+@media (max-width: 768px) {
+  .admin-layout {
+    flex-direction: column !important;
+  }
+
+  .admin-sidebar {
+    width: 280px !important;
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    z-index: 2100 !important;
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.7) !important;
+  }
+
+  .admin-main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .admin-topbar {
+    padding: 0.75rem 1rem !important;
+    gap: 0.65rem !important;
+  }
+
+  .topbar-search {
+    display: none !important; /* Hide search bar from mobile topbar to avoid crowding */
+  }
+
+  .admin-user-pill .admin-user-info {
+    display: none !important; /* Show avatar only */
+  }
+
+  .admin-content-body {
+    padding: 1rem 0.85rem !important;
+  }
+
+  .panel-header-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.85rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .panel-header-row .btn {
+    width: 100% !important;
+  }
+
+  .panel-title {
+    font-size: 1.35rem !important;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .metric-card {
+    padding: 1rem 0.85rem !important;
+    gap: 0.75rem !important;
+  }
+
+  .metric-icon-box {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1.1rem !important;
+  }
+
+  .metric-val {
+    font-size: 1.35rem !important;
+  }
+
+  .metric-label {
+    font-size: 0.72rem !important;
+  }
+
+  .toolbar-card {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .toolbar-search {
+    width: 100% !important;
+  }
+
+  .toolbar-filters {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .toolbar-select {
+    flex: 1 !important;
+  }
+
+  /* Table Horizontal Scrolling on Mobile */
+  .table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .admin-table {
+    min-width: 600px !important;
+  }
+
+  /* Grid Layouts on Mobile */
+  .courses-admin-grid, .reviews-admin-grid, .gallery-admin-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Modals on Mobile */
+  .admin-modal {
+    padding: 0.75rem !important;
+  }
+
+  .admin-modal-dialog {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 92vh !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .admin-modal-header {
+    padding: 1rem 1.25rem !important;
+  }
+
+  .admin-modal-body {
+    padding: 1.1rem 1.15rem !important;
+  }
+
+  .admin-modal-footer {
+    padding: 0.85rem 1.15rem !important;
+    flex-direction: column-reverse !important;
+    gap: 0.65rem !important;
+  }
+
+  .admin-modal-footer .btn {
+    width: 100% !important;
+  }
+
+  .form-group-row {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+  }
+}
