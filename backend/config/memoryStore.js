@@ -86,6 +86,17 @@ const memoryStore = {
       createdAt: new Date()
     },
     {
+      _id: 'review_khushi',
+      studentName: 'Khushi Kumari',
+      studentPhoto: '',
+      videoUrl: 'https://www.instagram.com/reel/DaDSHDPJLrI/?stkn=NzhobXU3YzRmb2Jw',
+      reviewText: 'Learning at ASE Aptitude was the best decision for my confidence and career! The practical computer training and spoken English speaking practice are top-notch with great personal attention from teachers.',
+      rating: 5,
+      role: 'Spoken English & Computer Student • ASE Aptitude',
+      isActive: true,
+      createdAt: new Date()
+    },
+    {
       _id: 'review_1',
       studentName: 'Rahul Kumar',
       reviewText: 'My spoken English confidence improved a lot.',
