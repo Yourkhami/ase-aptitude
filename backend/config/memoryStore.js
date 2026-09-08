@@ -64,6 +64,17 @@ const memoryStore = {
 
   reviews: [
     {
+      _id: 'review_ujala',
+      studentName: 'Ujala Madhesia',
+      studentPhoto: 'images/ujala-madhesia-avatar.jpg',
+      videoUrl: 'https://www.instagram.com/reel/Dck2ylIBqPs/?stkn=cmw0d3NveW9ha3F4',
+      reviewText: 'ASE Aptitude completely transformed my spoken English confidence and eliminated hesitation. The interactive speaking sessions, dedicated computer lab, and personal guidance from Director Sajid Raja Sir made all the difference!',
+      rating: 5,
+      role: 'Spoken English Student • ASE Aptitude',
+      isActive: true,
+      createdAt: new Date()
+    },
+    {
       _id: 'review_1',
       studentName: 'Rahul Kumar',
       reviewText: 'My spoken English confidence improved a lot.',

@@ -872,22 +872,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const initials = r.studentName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
         const colorClass = avatarColors[idx % avatarColors.length];
+        const hasPhoto = !!r.studentPhoto;
+        const avatarHtml = hasPhoto 
+          ? `<div class="author-avatar has-photo"><img src="${r.studentPhoto}" alt="${r.studentName}" class="author-photo-img" onerror="this.onerror=null; this.src='images/ujala-madhesia.jpg';"></div>`
+          : `<div class="author-avatar ${colorClass}"><span>${initials}</span></div>`;
+
+        const videoActionHtml = r.videoUrl ? `
+          <div class="review-video-action">
+            <a href="${r.videoUrl}" target="_blank" rel="noopener noreferrer" class="btn-review-video" aria-label="Watch ${r.studentName}'s Video Review on Instagram">
+              <span class="video-play-pulse"><i class="fa-solid fa-play"></i></span>
+              <span>Watch Video Review on Instagram</span>
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        ` : '';
 
         return `
           <div class="review-slide ${idx === 0 ? 'active' : ''}" role="group" aria-roledescription="slide" aria-label="Review ${idx + 1} of ${data.data.length}">
-            <div class="review-card">
+            <div class="review-card ${hasPhoto ? 'featured-review-card' : ''}">
+              ${hasPhoto ? '<div class="review-badge-featured"><i class="fa-solid fa-circle-check"></i> Verified Student &bull; Video Review Available</div>' : ''}
               <div class="review-quote-icon"><i class="fa-solid fa-quote-left"></i></div>
               <div class="review-rating" aria-label="${r.rating} out of 5 stars">${stars}</div>
               <p class="review-text">“${r.reviewText}”</p>
               <div class="review-author">
-                <div class="author-avatar ${colorClass}">
-                  <span>${initials}</span>
-                </div>
+                ${avatarHtml}
                 <div class="author-info">
-                  <h4 class="author-name">${r.studentName}</h4>
+                  <h4 class="author-name">${r.studentName} ${hasPhoto ? '<i class="fa-solid fa-circle-check text-blue" title="Verified Student"></i>' : ''}</h4>
                   <span class="author-role">${r.role || 'Student'}</span>
                 </div>
               </div>
+              ${videoActionHtml}
             </div>
           </div>
         `;

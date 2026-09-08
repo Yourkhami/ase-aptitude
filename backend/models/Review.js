@@ -22,6 +22,14 @@ const reviewSchema = new mongoose.Schema({
     type: String,
     default: 'Student'
   },
+  studentPhoto: {
+    type: String,
+    default: ''
+  },
+  videoUrl: {
+    type: String,
+    default: ''
+  },
   isActive: {
     type: Boolean,
     default: true
