@@ -75,6 +75,17 @@ const memoryStore = {
       createdAt: new Date()
     },
     {
+      _id: 'review_nazia',
+      studentName: 'Nazia Parween',
+      studentPhoto: 'images/nazia-parween-avatar.jpg',
+      videoUrl: 'https://www.instagram.com/reel/DcgV8g9Iw4n/?stkn=YWdxaWNhd21vczE2',
+      reviewText: 'The computer training and spoken English environment at ASE Aptitude is wonderful! Practical lab sessions, personal guidance from Director Sir, and supportive teaching helped me build strong career skills.',
+      rating: 5,
+      role: 'Computer & Spoken English Student • ASE Aptitude',
+      isActive: true,
+      createdAt: new Date()
+    },
+    {
       _id: 'review_1',
       studentName: 'Rahul Kumar',
       reviewText: 'My spoken English confidence improved a lot.',
