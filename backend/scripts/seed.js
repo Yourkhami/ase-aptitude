@@ -117,39 +117,11 @@ const seedDatabase = async () => {
         },
         {
           studentName: 'Khushi Kumari',
-          studentPhoto: '',
+          studentPhoto: 'images/khushi-kumari-avatar.jpg',
           videoUrl: 'https://www.instagram.com/reel/DaDSHDPJLrI/?stkn=NzhobXU3YzRmb2Jw',
           reviewText: 'Learning at ASE Aptitude was the best decision for my confidence and career! The practical computer training and spoken English speaking practice are top-notch with great personal attention from teachers.',
           rating: 5,
           role: 'Spoken English & Computer Student • ASE Aptitude',
-          isActive: true
-        },
-        {
-          studentName: 'Rahul Kumar',
-          reviewText: 'My spoken English confidence improved a lot.',
-          rating: 5,
-          role: 'Spoken English Batch',
-          isActive: true
-        },
-        {
-          studentName: 'Pooja Verma',
-          reviewText: 'Best institute for computer courses. The practical training helped me a lot.',
-          rating: 5,
-          role: 'ADCA & Tally Student',
-          isActive: true
-        },
-        {
-          studentName: 'Aman Singh',
-          reviewText: 'Teachers are very supportive and explain everything clearly.',
-          rating: 4,
-          role: 'DCA & Typing Student',
-          isActive: true
-        },
-        {
-          studentName: 'Priya Sharma',
-          reviewText: 'The interview training and mock presentations helped me crack my corporate interview with total ease!',
-          rating: 5,
-          role: 'Professional Skills Track',
           isActive: true
         }
       ];
