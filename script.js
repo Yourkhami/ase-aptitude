@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (slides.length > 0) {
     let currentSlide = 0;
     let autoSlideTimer = null;
-    const SLIDE_INTERVAL = 4500; // 4.5 seconds
+    const SLIDE_INTERVAL = 3000; // 3 seconds
 
     // Build pagination dots dynamically
     if (dotsContainer) {
@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentGalleryIndex = 0;
   let galleryAutoSlideTimer = null;
-  const GALLERY_INTERVAL_MS = 4500; // 4.5 seconds
+  const GALLERY_INTERVAL_MS = 3000; // 3 seconds
 
   const getGallerySlides = () => {
     return gallerySliderTrack ? Array.from(gallerySliderTrack.querySelectorAll('.gallery-slide')) : [];
